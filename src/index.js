@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './profile.css';
-import data from './user.json';
-import { Profile } from 'components/App';
+import prof from './user.json';
+import data from './data.json';
+import { Profile } from 'components/Profile';
+import { Stats } from 'components/Statistics';
 
-const { username, tag, location, avatar, stats } = data;
+const { username, tag, location, avatar, stats } = prof;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,5 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       avatar={avatar}
       stats={stats}
     />
+    <Stats title="Upload Statistics" stats={data} />
   </React.StrictMode>
 );
