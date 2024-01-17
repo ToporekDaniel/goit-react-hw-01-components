@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Online = styled.span`
   display: inline-block;
+  background-color: ${({ isOnline }) => (isOnline ? 'green' : 'red')};
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ isOnline }) => (isOnline ? 'green' : 'red')};
   margin-right: 5px;
 `;
 const FriendLi = styled.li`
@@ -20,7 +21,7 @@ const FriendLi = styled.li`
 export const FriendList = ({ friends }) => {
   function createLi() {
     return friends.map(friend => (
-      <FriendLi className="item">
+      <FriendLi key={friend.id}>
         <Online isOnline={friend.isOnline} />
         <img
           className="avatar"
@@ -33,5 +34,7 @@ export const FriendList = ({ friends }) => {
     ));
   }
 
-  return <ul class="friend-list">{createLi()}</ul>;
+  return <ul className="friend-list">{createLi()}</ul>;
 };
+
+FriendList.propTypes = { friends: PropTypes.arrayOf(PropTypes.object) };

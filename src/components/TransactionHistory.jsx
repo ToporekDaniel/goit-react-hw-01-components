@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const TransactionHistory = ({ items }) => {
   function createTr() {
     return items.map(item => (
@@ -22,4 +24,7 @@ export const TransactionHistory = ({ items }) => {
       <tbody>{createTr()}</tbody>
     </table>
   );
+};
+TransactionHistory.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object),
 };

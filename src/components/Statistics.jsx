@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -9,7 +10,7 @@ function getRandomColor() {
   return color;
 }
 
-const StatSection = styled.section`
+const Stats = styled.section`
   background-color: ${getRandomColor};
   padding: 10px;
 `;
@@ -29,10 +30,10 @@ const StatItem = styled.li`
   color: white;
 `;
 
-export const Stats = ({ title, stats }) => {
+export const Statistics = ({ title, stats }) => {
   function createLi() {
     return stats.map(i => (
-      <StatItem className="item">
+      <StatItem key={i.id}>
         <span className="label">{i.label}</span>
         <span className="percentage">{i.percentage}</span>
       </StatItem>
@@ -40,11 +41,16 @@ export const Stats = ({ title, stats }) => {
   }
 
   return (
-    <StatSection className="statistics">
+    <Stats>
       <h2 style={{ alignItems: 'center', display: 'flex' }} className="title">
         {title}
       </h2>
-      <StatList className="stat-list">{createLi()}</StatList>
-    </StatSection>
+      <StatList>{createLi()}</StatList>
+    </Stats>
   );
+};
+
+Statistics.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(PropTypes.object),
 };
