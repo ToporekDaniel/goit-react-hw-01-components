@@ -39,12 +39,19 @@ export const Statistics = ({ title, stats }) => {
       </StatItem>
     ));
   }
+  function createTitle(title) {
+    return (
+      title && (
+        <h2 style={{ alignItems: 'center', display: 'flex' }} className="title">
+          {title}
+        </h2>
+      )
+    );
+  }
 
   return (
     <Stats>
-      <h2 style={{ alignItems: 'center', display: 'flex' }} className="title">
-        {title}
-      </h2>
+      {createTitle(title)}
       <StatList>{createLi()}</StatList>
     </Stats>
   );
